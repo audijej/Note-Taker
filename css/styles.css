@@ -6,6 +6,7 @@ html, body {
 
 .save-note {
   display: none;
+  
 }
 
 .icons i {
@@ -16,7 +17,7 @@ html, body {
 }
 
 .note-textarea, .note-title {
-  color: #000000;
+  color: red;
   width: 100%;
   outline: none;
   border: none;
@@ -67,4 +68,25 @@ html, body {
   border-right: none;
   padding: 20px;
   cursor: pointer;
+}
+
+footer {
+  background-color: black;
+  color: white;
+  text-align: center;
+  margin-top: auto;
+  width: 100%;
+}
+
+.social-media-icon {
+  display: inline;
+  font-size: 30px;
+}
+
+#save-note {
+  background-color: purple;
+}
+
+#newNote {
+  background-color: purple;
 }
