@@ -6,3 +6,5 @@ module.exports = function(app) {
         res.json(noteData)
     });
 }
+
+console.log(noteData);

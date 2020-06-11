@@ -19,7 +19,7 @@ let characters = [
     {
         name: "gohan",
         role: "saiyin/human",
-        age: 34
+        age: 8
     }
 ]
 
