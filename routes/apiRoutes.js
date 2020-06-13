@@ -1,5 +1,5 @@
-var noteData = require("../db/db.json");
-var db = "./db/db.json";
+// var noteData = require("../db/db.json");
+// var db = "./db/db.json";
 const fs = require("fs");
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
@@ -13,14 +13,17 @@ const { v4: uuidv4 } = require("uuid");
 module.exports = function (app) {
 
     app.get("/api/notes", function (req, res) {
-        res.send(db)
+
+        fs.readFile("./db/db.json", "utf8", function (err, data) {
+            if (err) throw err;
+            res.send(JSON.parse(data));
+
+            console.log("This is new" + data);
+        });
+
     });
 
-    // fs.readFile(db, "utf8", function (err, data) {
-    //     if (err) throw err;
 
-    //     console.log("This is new" + data);
-    // });
 
 
     // Create New Characters - takes in JSON input
@@ -35,24 +38,24 @@ module.exports = function (app) {
 
         console.log("These are the new" + JSON.stringify(newNotes));
 
-        res.json(noteData)
+        // res.json(noteData)
 
 
-        fs.readFile(db, "utf8", function (err, data) {
+        fs.readFile("./db/db.json", "utf8", function (err, data) {
             if (err) throw err;
 
             let moreNotes = data;
 
             moreNotes.push(newNotes);
 
-            console.log("This is new" + data);
-            console.log("Some new notes: " + JSON.stringify(moreNotes));
+            console.log("This is new" + moreNotes);
 
 
-            fs.writeFile(db, "utf8", function (err, data) {
+            fs.writeFile("./db/db.json", moreNotes, function (err) {
                 if (err) throw err;
-                res.send(db);
-                console.log("create more notes!" + data)
+                res.send(JSON.parse(data));
+
+                console.log("create more notes!")
             });
         });
 
