@@ -1,4 +1,4 @@
-[{"title":"Test Title","text":"Test text"},
+[{"title":"Test Title", "text":"Test text", "id":"1"},
     {
         "name": "goku",
         "role": "saiyin",
@@ -10,4 +10,3 @@
         "role": "saiyin/human",
         "age": 8
     }]
-
