@@ -44,23 +44,42 @@ module.exports = function (app) {
         fs.readFile("./db/db.json", "utf8", function (err, data) {
             if (err) throw err;
 
-            let moreNotes = [];
+            let moreNotes = JSON.parse(data);
 
             moreNotes.push(newNotes);
 
             console.log("This is new" + JSON.stringify(moreNotes));
 
 
-            fs.writeFileSync("./db/db.json", JSON.stringify(moreNotes), function (err) {
+            fs.writeFile("./db/db.json", JSON.stringify(moreNotes), function (err) {
                 if (err) throw err;
-                res.send(JSON.stringify(moreNotes));
+                res.send(moreNotes);
 
-                console.log("create more notes!" + moreNotes)
+                console.log("create more notes!" + JSON.stringify(moreNotes))
             });
         });
 
         
     });
+////////////////////////////////////////////////////////////////////
+    app.delete("/api/notes/:id", function (req, res) {
+
+        let deleter = req.params.id;
+
+        fs.readFile("./db/db.json", "utf8", function (err, data) {
+            if (err) throw err;
+            let deleteMore = JSON.parse(data);
+
+            let updatedNoteData = deleteMore.filter(note => note.id != deleter);
+
+            fs.writeFile("./db/db.json", JSON.stringify(updatedNoteData), function (err) {
+                if (err) throw err;
+                res.send(updatedNoteData);
+            });
+        });
+    })
+
+        
 };
 
 // function generateHtml(){
