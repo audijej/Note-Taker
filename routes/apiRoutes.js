@@ -18,7 +18,7 @@ module.exports = function (app) {
             if (err) throw err;
             res.send(JSON.parse(data));
 
-            console.log("This is new" + data);
+            console.log("This is newer" + JSON.stringify(data));
         });
 
     });
@@ -44,35 +44,22 @@ module.exports = function (app) {
         fs.readFile("./db/db.json", "utf8", function (err, data) {
             if (err) throw err;
 
-            let moreNotes = data;
+            let moreNotes = [];
 
             moreNotes.push(newNotes);
 
-            console.log("This is new" + moreNotes);
+            console.log("This is new" + JSON.stringify(moreNotes));
 
 
-            fs.writeFile("./db/db.json", moreNotes, function (err) {
+            fs.writeFileSync("./db/db.json", JSON.stringify(moreNotes), function (err) {
                 if (err) throw err;
-                res.send(JSON.parse(data));
+                res.send(JSON.stringify(moreNotes));
 
-                console.log("create more notes!")
+                console.log("create more notes!" + moreNotes)
             });
         });
 
-        // req.body hosts is equal to the JSON post sent from the user
-        // This works because of our body parsing middleware
-        var newData = req.body;
-
-        // Using a RegEx Pattern to remove spaces from newCharacter
-        // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-
-        // newData.routeName = newData.name.replace(/\s+/g, "").toLowerCase();
-
-        console.log(newData);
-
-        noteData.push(newData);
-
-        res.json(newData);
+        
     });
 };
 
