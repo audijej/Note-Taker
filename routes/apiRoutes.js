@@ -1,13 +1,7 @@
-// var noteData = require("../db/db.json");
-// var db = "./db/db.json";
+
 const fs = require("fs");
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
-// const render = require("../notes.html");
-
-
-// const OUTPUT_DIR = path.resolve(__dirname, "output");
-// const outputPath = path.join(OUTPUT_DIR, "note.html");
 
 
 module.exports = function (app) {
@@ -24,7 +18,7 @@ module.exports = function (app) {
     });
 
 
-
+////////////////////////////////////////////////////////////
 
     // Create New Characters - takes in JSON input
     app.post("/api/notes", function (req, res) {
@@ -81,10 +75,3 @@ module.exports = function (app) {
 
         
 };
-
-// function generateHtml(){
-//     fs.writeFileSync(outputPath, render(noteData), "utf-8")
-// } 
-
-// generateHtml()
-// console.log(noteData);
