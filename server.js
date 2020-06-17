@@ -10,7 +10,7 @@ var app = express();
 // const outputPath = path.join(OUTPUT_DIR, "notes.html");
 
 
-var PORT = 8000;
+var PORT = process.env.PORT || 8000;
 
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
